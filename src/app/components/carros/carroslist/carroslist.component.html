@@ -1,0 +1,96 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+            <h3>Listagem de Carros</h3>
+            <div class="direita">
+              <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple
+                      (click)="new()"
+                      >
+                      Novo
+                    </button>
+             <!-- <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple
+                      routerLink="/admin/carros/new" 
+                      >
+                      Novo
+                    </button>
+                     -->
+                </div>
+                <br>
+                <table border="1" class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (carro of lista; track $index) {
+                <tr>
+                  <td>{{ carro.id }}</td>
+                  <td>{{ carro.nome }}</td>
+                  <td class="direita">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple (click)="edit(carro)"
+                      >
+                      Editar
+                    </button>
+                    <!-- <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple
+                      routerLink="/admin/carros/edit/{{carro.id}}" 
+                      >
+                      <- o routerLink é usado para navegar para a página de edição do carro, passando o ID do carro como parâmetro na URL ->
+                      Editar
+                    </button> -->
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-rounded mt-4"
+                      mdbRipple
+                      (click)="deleteById(carro)"
+                    >
+                      Deletar
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAAALLLL (janelinha q aparece) -->
+ <ng-template #modalCarroDetalhe> 
+  <!-- o ng-template é usado para definir um template de modal que pode ser exibido quando necessário.  -->
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+  <div class="modal-body">
+
+    <app-carrosdetails [carro]="carroEdit" (retorno)="retornoDetalhe($event)"></app-carrosdetails> 
+    <!-- o componente de detalhes é renderizado dentro da modal, e recebe o carro a ser editado como input, e emite um evento de retorno para a listagem quando o cadastro ou edição for concluída, para que a lista possa ser atualizada com as mudanças feitas. -->
+
+  </div>
+
+</div>
+</ng-template>
