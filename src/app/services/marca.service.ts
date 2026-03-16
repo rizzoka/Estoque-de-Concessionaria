@@ -1,0 +1,42 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Marca } from '../models/marca';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MarcaService {
+  http = inject(HttpClient);
+
+  API = 'http://localhost:8080/api/marca';
+
+  constructor() {}
+
+  findAll(): Observable<Marca[]> {
+    //precisa do observable p fzr a requsiição assincrona, ou seja, o programa n vai esperar a resposta da requisição para continuar a execução do código
+    return this.http.get<Marca[]>(this.API + '/findAll');
+  }
+
+  delete(id: number): Observable<string> {
+    return this.http.delete<string>(this.API + '/delete/' + id, {
+      responseType: 'text' as 'json',
+    }); //o responseType é necessário para indicar que a resposta da requisição é do tipo texto, e não json, pois o back retorna uma string de confirmação
+  }
+
+  save(marca: Marca): Observable<string> {
+    return this.http.post<string>(this.API + '/save', marca, {
+      responseType: 'text' as 'json',
+    }); // a marca está aí pq é o body da requisição, ou seja, os dados que estão sendo enviados para o back para salvar ou atualizar uma marca
+  }
+
+  update(marca: Marca, id: number): Observable<string> {
+    return this.http.put<string>(this.API + '/update/' + id, marca, {
+      responseType: 'text' as 'json',
+    });
+  }
+
+  findById(id: number): Observable<Marca> {
+    return this.http.get<Marca>(this.API + '/findById/' + id);
+  }
+}
