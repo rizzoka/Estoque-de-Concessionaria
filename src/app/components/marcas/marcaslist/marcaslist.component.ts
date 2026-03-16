@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import {
@@ -20,6 +20,9 @@ export class MarcaslistComponent {
 
   lista: Marca[] = [];
   marcaEdit: Marca = new Marca(0, '');
+
+  @Input("esconderBotoes") esconderBotoes: boolean = false; //decorator @Input para receber do componente pai a informação de esconder ou mostrar os botões de editar e deletar, por padrão é false, ou seja, os botões são mostrados
+  @Output('retorno') retorno = new EventEmitter<any>(); //decorator @Output para emitir o retorno de uma marca editada ou nova
 
   marcaService = inject(MarcaService);
 
@@ -113,6 +116,10 @@ export class MarcaslistComponent {
 
     this.findAll();
     this.modalRef.close(); //fechamento da modal após receber o retorno de uma marca editada ou nova
+  }
+
+  select(marca: Marca){
+    this.retorno.emit(marca); //emite a marca selecionada para o componente pai, que pode ser utilizado para preencher o campo de marca no formulário de detalhes de carro, por exemplo
   }
 
 }

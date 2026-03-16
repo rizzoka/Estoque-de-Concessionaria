@@ -39,6 +39,16 @@
                   <td>{{ carro.id }}</td>
                   <td>{{ carro.nome }}</td>
                   <td class="direita">
+                    @if(esconderBotoes){ 
+                      <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple (click)="select(carro)"
+                      >
+                      Selecionar
+                    </button>
+                    } @else {
+                      <!-- esconde os botões de editar e deletar -->
                     <button
                       type="button"
                       class="btn btn-primary btn-rounded mt-4"
@@ -63,6 +73,7 @@
                     >
                       Deletar
                     </button>
+                  }
                   </td>
                 </tr>
               }
