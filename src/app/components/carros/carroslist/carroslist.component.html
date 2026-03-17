@@ -91,12 +91,13 @@
     aria-label="Close"
     (click)="modalRef.close()"
   ></button>
-  <div class="modal-body">
+</div>
 
-    <app-carrosdetails [carro]="carroEdit" (retorno)="retornoDetalhe($event)"></app-carrosdetails> 
-    <!-- o componente de detalhes é renderizado dentro da modal, e recebe o carro a ser editado como input, e emite um evento de retorno para a listagem quando o cadastro ou edição for concluída, para que a lista possa ser atualizada com as mudanças feitas. -->
+<div class="modal-body">
 
-  </div>
+  <app-carrosdetails [carro]="carroEdit" (retorno)="retornoDetalhe($event)"></app-carrosdetails> 
+  <!-- o componente de detalhes é renderizado dentro da modal, e recebe o carro a ser editado como input, e emite um evento de retorno para a listagem quando o cadastro ou edição for concluída, para que a lista possa ser atualizada com as mudanças feitas. -->
 
 </div>
+
 </ng-template>

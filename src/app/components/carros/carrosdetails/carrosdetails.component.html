@@ -117,13 +117,13 @@
     aria-label="Close"
     (click)="modalRef.close()"
   ></button>
-  <div class="modal-body">
+  
+</div>
+<div class="modal-body">
 
-    <app-marcaslist [esconderBotoes]='true' (retorno)="retornoMarca($event)"></app-marcaslist> 
-    <!-- o componente de listagem de marcas é renderizado dentro da modal, e emite um evento de retorno quando uma marca for selecionada. -->
-     <!-- o esconderBotoes='true' é usado para esconder os botões de editar e deletar -->
-
-  </div>
+  <app-marcaslist [esconderBotoes]='true' (retorno)="retornoMarca($event)"></app-marcaslist> 
+  <!-- o componente de listagem de marcas é renderizado dentro da modal, e emite um evento de retorno quando uma marca for selecionada. -->
+   <!-- o esconderBotoes='true' é usado para esconder os botões de editar e deletar -->
 
 </div>
 </ng-template>
@@ -137,11 +137,12 @@
     aria-label="Close"
     (click)="modalRef.close()"
   ></button>
-  <div class="modal-body">
+</div>
 
-    <app-acessoriolist [esconderBotoes]='true' (retorno)="retornoAcessorio($event)"></app-acessoriolist> 
+<div class="modal-body">
 
-  </div>
+  <app-acessoriolist [esconderBotoes]='true' (retorno)="retornoAcessorio($event)"></app-acessoriolist> 
 
 </div>
+
 </ng-template>

@@ -96,12 +96,13 @@
     aria-label="Close"
     (click)="modalRef.close()"
   ></button>
-  <div class="modal-body">
+</div>
 
-    <app-marcasdetails [marca]="marcaEdit" (retorno)="retornoDetalhe($event)"></app-marcasdetails> 
-    <!-- o componente de detalhes é renderizado dentro da modal, e recebe a marca a ser editada como input, e emite um evento de retorno para a listagem quando o cadastro ou edição for concluída, para que a lista possa ser atualizada com as mudanças feitas. -->
+<div class="modal-body">
 
-  </div>
+  <app-marcasdetails [marca]="marcaEdit" (retorno)="retornoDetalhe($event)"></app-marcasdetails> 
+  <!-- o componente de detalhes é renderizado dentro da modal, e recebe a marca a ser editada como input, e emite um evento de retorno para a listagem quando o cadastro ou edição for concluída, para que a lista possa ser atualizada com as mudanças feitas. -->
 
 </div>
+
 </ng-template>

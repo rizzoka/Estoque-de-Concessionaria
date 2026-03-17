@@ -80,11 +80,12 @@
     aria-label="Close"
     (click)="modalRef.close()"
   ></button>
-  <div class="modal-body">
+</div>
 
-    <app-acessoriodetails [acessorio]="acessorioEdit" (retorno)="retornoDetalhe($event)"></app-acessoriodetails> 
+<div class="modal-body">
 
-  </div>
+  <app-acessoriodetails [acessorio]="acessorioEdit" (retorno)="retornoDetalhe($event)"></app-acessoriodetails> 
 
 </div>
+
 </ng-template>
