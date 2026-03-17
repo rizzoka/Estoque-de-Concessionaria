@@ -1,0 +1,90 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+            <h3>Listagem de Marcas</h3>
+            <div class="direita">
+              <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple
+                      (click)="new()"
+                      >
+                      Novo
+                    </button>
+
+                </div>
+                <br>
+                <table border="1" class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (acessorio of lista; track $index) {
+                <tr>
+                  <td>{{ acessorio.id }}</td>
+                  <td>{{ acessorio.nome }}</td>
+                  <td class="direita">
+                    @if(esconderBotoes){ 
+                      <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple (click)="select(acessorio)"
+                      >
+                      Selecionar
+                    </button>
+                    } @else {
+                      <!-- esconde os botões de editar e deletar -->
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-rounded mt-4"
+                      mdbRipple (click)="edit(acessorio)"
+                      >
+                      Editar
+                    </button>
+                    
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-rounded mt-4"
+                      mdbRipple
+                      (click)="deleteById(acessorio)"
+                    >
+                      Deletar
+                    </button>
+                  }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL-->
+ <ng-template #modalAcessorioDetalhe> 
+  
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+  <div class="modal-body">
+
+    <app-acessoriodetails [acessorio]="acessorioEdit" (retorno)="retornoDetalhe($event)"></app-acessoriodetails> 
+
+  </div>
+
+</div>
+</ng-template>
