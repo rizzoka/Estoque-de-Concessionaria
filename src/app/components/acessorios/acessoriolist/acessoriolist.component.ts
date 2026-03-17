@@ -1,15 +1,14 @@
 import { Component, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Acessorio } from '../../../models/acessorio';
 import { AcessorioService } from '../../../services/acessorio.service';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import Swal from 'sweetalert2';
 import { AcessoriodetailsComponent } from '../acessoriodetails/acessoriodetails.component';
 
 @Component({
   selector: 'app-acessoriolist',
-  imports: [RouterLink, MdbFormsModule, AcessoriodetailsComponent],
+  imports: [RouterLink, MdbModalModule, AcessoriodetailsComponent],
   templateUrl: './acessoriolist.component.html',
   styleUrl: './acessoriolist.component.scss'
 })
