@@ -8,10 +8,12 @@ import { CarroService } from '../../../services/carro.service';
 import { MarcaslistComponent } from "../../marcas/marcaslist/marcaslist.component";
 import { Marca } from '../../../models/marca';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { AcessorioListComponent } from '../../acessorios/acessoriolist/acessoriolist.component';
+import { Acessorio } from '../../../models/acessorio';
 
 @Component({
   selector: 'app-carrosdetails',
-  imports: [MdbFormsModule, FormsModule, MarcaslistComponent],
+  imports: [MdbFormsModule, FormsModule, MarcaslistComponent, AcessorioListComponent],
   templateUrl: './carrosdetails.component.html',
   styleUrl: './carrosdetails.component.scss',
 })
@@ -24,6 +26,7 @@ export class CarrosdetailsComponent {
   //ELEMENTOS DA MODAL
  modalService = inject(MdbModalService); //injetar para conseguir abrir a modal
   @ViewChild('modalMarcas') modalMarcas: any; //referencia para a modal no html
+  @ViewChild('modalAcessorios') modalAcessorios: any; //referencia para a modal de acessórios no html
   modalRef!: MdbModalRef<any>; //variável para armazenar a referência da modal aberta, o tipo é MdbModalRef, que é a classe que representa a modal no mdb-angular-ui-kit
 
 
@@ -106,9 +109,26 @@ export class CarrosdetailsComponent {
     this.modalRef = this.modalService.open(this.modalMarcas, {modalClass: 'modal-lg'}); //abertura da modal de marcas, passando a referência da modal no html e a classe para deixar a modal maior
   }
 
+  buscarAcessorio(){
+    this.modalRef = this.modalService.open(this.modalAcessorios, {modalClass: 'modal-lg'}); 
+  }
+
   retornoMarca(marca: Marca){
     this.carro.marca = marca; //atribuição da marca selecionada na modal ao carro atual
          this.modalRef.close();
+  }
+
+  retornoAcessorio(acessorio: Acessorio){
+    if(this.carro.acessorios == null){
+      this.carro.acessorios = []; //inicializa a lista de acessórios do carro caso ela seja nula
+    }
+    this.carro.acessorios.push(acessorio); //adiciona o acessório selecionado na modal à lista de acessórios do carro atual
+     this.modalRef.close();
+  }
+
+  desvincularAcessorio(acessorio: Acessorio){
+      let posicao = this.carro.acessorios.findIndex(x => {return x.id == acessorio.id});
+      this.carro.acessorios.splice(posicao, 1); //remove o acessório da lista de acessórios do carro atual, utilizando a posição encontrada (1 unico elemento)
   }
 
 }
