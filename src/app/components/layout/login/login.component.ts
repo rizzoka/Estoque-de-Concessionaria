@@ -15,9 +15,6 @@ import { Login } from '../../../auth/login';
 export class LoginComponent {
   login: Login =  new Login();
 
-  usuario!: string;
-  senha!: string;
-
   router = inject(Router); //injeção de dependência do Router (o app.router)
   loginService = inject(LoginService); //injeção de dependência do LoginService (o app.auth)
 
