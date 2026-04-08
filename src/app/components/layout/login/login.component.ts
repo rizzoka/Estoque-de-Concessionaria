@@ -27,6 +27,7 @@ export class LoginComponent {
       next: token => {
         if(token){ //usuário e senha corretos
           this.loginService.addToken(token); //salva o token no localStorage
+          this.router.navigate(['admin/carros']); //redireciona para a página de carros
         } else { // ou o usuario ou a senha incorretos
           alert("Login ou senha inválidos!");
         }
