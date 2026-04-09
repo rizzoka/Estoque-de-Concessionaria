@@ -7,11 +7,12 @@ import { MarcaslistComponent } from './components/marcas/marcaslist/marcaslist.c
 import { MarcasdetailsComponent } from './components/marcas/marcasdetails/marcasdetails.component';
 import { AcessorioListComponent } from './components/acessorios/acessoriolist/acessoriolist.component';
 import { AcessoriodetailsComponent } from './components/acessorios/acessoriodetails/acessoriodetails.component';
+import { loginGuard } from './auth/login.guard';
 
 export const routes: Routes = [
     {path: "", redirectTo: "login", pathMatch: "full"},
     {path: "login", component: LoginComponent},
-    {path: "admin", component: PrincipalComponent, children: [
+    {path: "admin", component: PrincipalComponent,canActivate: [loginGuard] ,children: [ //o loginGuard é um serviço que verifica se o usuário está logado, se não estiver logado, ele redireciona para a tela de login
         //rotas filhas dentro de admin
         {path: "carros", component: CarroslistComponent}, //aq ele vai renderiar o app-menu la da PrincipalComponent e a tela do CarroslistComponent dentro do router-outlet da PrincipalComponent
         {path: "carros/new", component: CarrosdetailsComponent},

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
+import { LoginService } from '../../../auth/login.service';
+import { Usuario } from '../../../auth/usuario';
 
 
 @Component({
@@ -10,4 +12,10 @@ import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 })
 export class MenuComponent {
 
+  loginService = inject(LoginService); //para poder usar o serviço de login para verificar se o usuário está autenticado
+  usuario!: Usuario;
+
+  constructor(){
+    this.usuario = this.loginService.getUsuarioLogado();
+  }
 }
