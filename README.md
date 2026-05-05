@@ -1,59 +1,94 @@
-# BibliotecaAula
+# 🚗 Estoque Concessionária — Front-end
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.17.
+Interface web em **Angular** para o sistema de gestão de carros, marcas e acessórios em uma concessionária, com autenticação JWT e controle de acesso por perfil de usuário.
 
-## Development server
+> **Back-end:** [carros-back](https://github.com/rizzoka/back-Estoque-de-Concessionaria) — necessário rodar em `http://localhost:8080`
 
-To start a local development server, run:
+## 🛠️ Tecnologias
 
+- Angular 17+ / TypeScript
+- MDB Angular UI Kit (Bootstrap 5)
+- SweetAlert2
+- jwt-decode
+
+### Instalação
+ 
 ```bash
+# Clone o repositório
+git clone https://github.com/rizzoka/Estoque-de-Concessionaria.git
+cd biblioteca-aula
+ 
+# Instale as dependências
+npm install
+ 
+# Inicie o servidor de desenvolvimento
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Configuração do Servidor
 
-## Code scaffolding
+Edite `src/environments/environment.development.ts`:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```typescript
+export const environment = {
+  SERVIDOR: "http://localhost:8080"
+};
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Perfis de Acesso
 
-```bash
-ng generate --help
+| Perfil | Acesso |
+|--------|--------|
+| `ADMIN` | Carros, Marcas e Acessórios |
+| `USER`  | Marcas e Acessórios |
+
+## 📁 Estrutura do Projeto
+ 
+```
+src/
+├── app/
+│   ├── auth/                        # Módulo de autenticação
+│   │   ├── login.ts                 # Modelo de credenciais
+│   │   ├── usuario.ts               # Modelo de usuário
+│   │   ├── login.service.ts         # Serviço de login e JWT
+│   │   ├── login.guard.ts           # Guard de rotas protegidas
+│   │   └── http-interceptor.service.ts  # Interceptor com token Bearer
+│   │
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── login/               # Tela de login
+│   │   │   ├── menu/                # Navbar responsiva
+│   │   │   └── principal/           # Layout base com router-outlet
+│   │   │
+│   │   ├── carros/
+│   │   │   ├── carroslist/          # Listagem com modal de edição
+│   │   │   └── carrosdetails/       # Formulário de cadastro/edição
+│   │   │
+│   │   ├── marcas/
+│   │   │   ├── marcaslist/          # Listagem com modal de edição
+│   │   │   └── marcasdetails/       # Formulário de cadastro/edição
+│   │   │
+│   │   └── acessorios/
+│   │       ├── acessoriolist/       # Listagem com modal de edição
+│   │       └── acessoriodetails/    # Formulário de cadastro/edição
+│   │
+│   ├── models/
+│   │   ├── carro.ts                 # Entidade Carro (com Marca e Acessórios)
+│   │   ├── marca.ts                 # Entidade Marca
+│   │   └── acessorio.ts             # Entidade Acessório
+│   │
+│   ├── services/
+│   │   ├── carro.service.ts         # HTTP client para /api/carro
+│   │   ├── marca.service.ts         # HTTP client para /api/marca
+│   │   └── acessorio.service.ts     # HTTP client para /api/acessorio
+│   │
+│   ├── app.routes.ts                # Definição de rotas
+│   └── app.config.ts                # Configuração global (HTTP, animações)
+│
+└── environments/
+    └── environment.development.ts   # URL do servidor back-end
 ```
 
-## Building
+### Créditos
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Projeto desenvolvido acompanhando o canal [Wellington de Oliveira](https://www.youtube.com/@wellfoz) no YouTube.
